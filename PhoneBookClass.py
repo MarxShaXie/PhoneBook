@@ -45,8 +45,15 @@ class PhoneBook:
     p1 = self.head
     while p1 is not None:
         if p1.name == name:
-            return p1.phonenumber
-        p1=p1.next
+          return p1.phonenumber
+        p1 = p1.next
+
+  def searchbynumber(self, number):
+    p1 = self.head
+    while p1 is not None:
+      if p1.phonenumber == number:
+        return p1.name
+      p1 = p1.next
 
   def sort(self):
     if self.head is not None and self.head.next is not None:
@@ -73,19 +80,49 @@ class PhoneBook:
         p2 = p1.next
         size = size - 1
 
-  def reverse(self):
-    if self.head is not None and self.head.next is not None:
-      p1 = self.head
-      p2 = p1.next
-      p3 = p2.next
-      p1.next = None
-      while p2.next is not None:
-        p2.next = p1
-        p1 = p2
-        p2 = p3
-        p3 = p3.next
+  def updatename(self, oldname, newname):
+    p1 = self.head
+    size = 1
+    while p1.next is not None:
+      p1 = p1.next
+      size = size + 1  
+    p1 = self.head
+    while size != 0:
+      if p1.name == oldname:
+        p1.name = newname
+        size = 0
+      else:
+        size = size - 1
+        p1 = p1.next
+
+def updatephonenumber(self, oldname, newnumber):
+    p1 = self.head
+    size = 1
+    while p1.next is not None:
+      p1 = p1.next
+      size = size + 1  
+    p1 = self.head
+    while size != 0:
+      if p1.name == oldname:
+        p1.phonenumber = newnumber
+        size = 0
+      else:
+        size = size - 1
+        p1 = p1.next
+
+def reverse(self):
+  if self.head is not None and self.head.next is not None:
+    p1 = self.head
+    p2 = p1.next
+    p3 = p2.next
+    p1.next = None
+    while p2.next is not None:
       p2.next = p1
-      self.head = p2
+      p1 = p2
+      p2 = p3
+      p3 = p3.next
+    p2.next = p1
+    self.head = p2
 
   def print(self):
     current = self.head
